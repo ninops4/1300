@@ -10,7 +10,7 @@ const lines = [];
 function post(tag, detail) {
     try {
         const x = new XMLHttpRequest();
-        x.open("POST", "/t", true);
+        x.open("POST", "t", true);
         x.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
         x.send("PS4-S4Q&tag=" + encodeURIComponent(tag)
              + "&detail=" + encodeURIComponent(String(detail == null ? "" : detail)));
@@ -204,9 +204,13 @@ function makeRpc(worker) {
     try {
         const params = new URLSearchParams(location.search);
 
-        const fwKey = offsetsFor(navigator.userAgent).key;
-        const kpatchName = fwKey
-            ? "patches/" + fwKey.replace(".", "") + ".bin" : null;
+        const fwResolved = offsetsFor(navigator.userAgent);
+        const fwKey = fwResolved.key;
+        // off.kpatch wins when a firmware shares another's kernel and therefore
+        // its blob -- 12.02 uses 1200.bin. Otherwise derive it from the key.
+        const kpatchName = fwResolved.off && fwResolved.off.kpatch
+            ? "patches/" + fwResolved.off.kpatch
+            : fwKey ? "patches/" + fwKey.replace(".", "") + ".bin" : null;
         let kpatch = null;
         try {
             if (kpatchName) {
@@ -281,7 +285,7 @@ function makeRpc(worker) {
                   + "WITHHELD. Nothing is freed twice and no reboot is owed."
                 : "  -- ARMED: the worker issues a REAL aio_multi_delete"));
 
-        state("يتم الآن تهكير الPS4 أنتظر قليلاً", "warn");
+        state("İşlem başlatıldı...", "warn");
 
         await new Promise(function (r) { setTimeout(r, 0); });
         const carrier = await establishPrimitive({
@@ -681,7 +685,7 @@ function makeRpc(worker) {
                 return c.join(",");
             })() + " are available to this process)");
 
-        state("wiring the worker...", "warn");
+        state("İşlem devam ediyor...", "warn");
         worker = new Worker("rpc_worker.js");
         rpc = makeRpc(worker);
         await rpc("ping");
@@ -780,7 +784,7 @@ function makeRpc(worker) {
         }
         mark("SPRAY-CANCELLED", "");
 
-        state("dry run: everything but the racing delete...", "warn");
+        state("İşlem devam ediyor...", "warn");
         servAddr.dv.setUint8(0, 16);
         servAddr.dv.setUint8(1, AF_INET);
         servAddr.dv.setUint16(2, 0x8d13, true);
@@ -1028,7 +1032,7 @@ function makeRpc(worker) {
             return null;
         }
 
-        state("racing...", "warn");
+        state("İşlem sonuçlanmak üzere... Acele etmeyin sadece bekleyin...", "warn");
         mark("ARMED", "one core " + ONE_CORE + ", suspend rendezvous, attempts=" + ATTEMPTS
             + "  -- the worker now issues a REAL aio_multi_delete");
 
@@ -3562,7 +3566,7 @@ function makeRpc(worker) {
                 ? "karw=1 repair=0 root=0"
                 : "doublefree=1 reclaim=1 karw=pktopts kv=0");
 
-            state(repaired ? "REPAIRED -- tearing down..."
+            state(repaired ? "Goldhen aktifleştirildi..."
                 : kv ? "KERNELVIEW LIVE -- REBOOT"
                      : "DOUBLE FREE ACHIEVED -- REBOOT", "warn");
             if (jailbroken) mark("JAILBROKEN", "uid=0 cr_sceAuthId=SYSCORE "
@@ -3784,7 +3788,7 @@ function makeRpc(worker) {
             mark("REBOOT-REQUIRED", (committed2 ? "TWO aliased pairs are live (0x80 rthdr " + "and 0x100 pktopts). " : "") + "do not keep browsing and do not close the "
                 + "browser normally. power the console off and back on.");
             try {
-                stateEl.textContent = "REBOOT THE CONSOLE";
+                stateEl.textContent = "İŞLEM BAŞARISIZ! CİHAZI YENİDEN BAŞLATIP TEKRAR DENEYİN...";
                 stateEl.className = "bad";
             } catch (e) { }
         } else if (repaired && cleanupDone) {
@@ -3802,7 +3806,7 @@ function makeRpc(worker) {
                     : "") + ". See the stage 8/9/10 marks for what is left.");
             try {
                 stateEl.textContent = payloadRunning
-                    ? " PS4 JAILBREAK COMPLETE تم تهكير الجهاز بنجاح "
+                    ? "KIRMA İŞLEMİ BAŞARIYLA TAMAMLANDI! TARAYICIDAN ÇIKABİLİRSİNİZ."
                     : kpatched ? "ROOT + KERNEL PATCHED -- NO REBOOT"
                     : jailbroken ? "ROOT -- NO REBOOT NEEDED"
                     : "REPAIRED -- NO REBOOT NEEDED";
