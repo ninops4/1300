@@ -281,7 +281,7 @@ function makeRpc(worker) {
                   + "WITHHELD. Nothing is freed twice and no reboot is owed."
                 : "  -- ARMED: the worker issues a REAL aio_multi_delete"));
 
-        state("يتم الآن تهكير الPS4 أنتظر قليلاً", "warn");
+        state("Wait-Jailbreaking", "warn");
 
         await new Promise(function (r) { setTimeout(r, 0); });
         const carrier = await establishPrimitive({
@@ -3802,7 +3802,7 @@ function makeRpc(worker) {
                     : "") + ". See the stage 8/9/10 marks for what is left.");
             try {
                 stateEl.textContent = payloadRunning
-                    ? " PS4 JAILBREAK COMPLETE تم تهكير الجهاز بنجاح "
+                    ? " PS4 JAILBREAK COMPLETED "
                     : kpatched ? "ROOT + KERNEL PATCHED -- NO REBOOT"
                     : jailbroken ? "ROOT -- NO REBOOT NEEDED"
                     : "REPAIRED -- NO REBOOT NEEDED";

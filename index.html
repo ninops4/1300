@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 
 <title>
-محمد خالد للشروحات 07714434273
+PS4 Exploit By:Far7at_Store
 </title>
 
 <style>
@@ -830,7 +830,7 @@ body::after {
 
   <div id="main-header">
 
-    <h1>محمد خالد للشروحات</h1>
+    <h1>PS4 Exploit By: Far7at_Store</h1>
 
     <div class="sub">
 
@@ -838,7 +838,7 @@ body::after {
 
       &bull;
 
-      لصيانة الأجهزة الإلكترونية
+      PS4 Exploit By: Far7at_Store
 
     </div>
 
@@ -852,7 +852,7 @@ body::after {
 
     <div id="state">
 
-      جارٍ كشف النسخة...
+      Detecting Version...
 
     </div>
 
@@ -885,7 +885,7 @@ body::after {
 <!-- FOOTER -->
 
 <div class="footer-brand">
-  PS4 AI TOOL
+  @Far7at_Store 01065655665
 </div>
 
 
@@ -979,7 +979,7 @@ body::after {
         bug = forced;
 
         why =
-            "تم التحديد يدوياً ?bug="
+            "Detected Manually ?bug="
             +
             forced;
 
@@ -988,7 +988,7 @@ body::after {
     else if (!key) {
 
         why =
-            "هذا المتصفح ليس بلايستيشن 4";
+            "This Is Not PS4 A Browser";
 
     }
 
@@ -998,7 +998,7 @@ body::after {
 
         why =
             key +
-            " — متوافق (Lapse)";
+            " — Supported (Lapse)";
 
     }
 
@@ -1008,7 +1008,7 @@ body::after {
 
         why =
             key +
-            " — متوافق (Poops)";
+            " — Supported (Poops)";
 
     }
 
@@ -1016,13 +1016,13 @@ body::after {
 
         why =
             key +
-            " — غير مدعوم";
+            " — UnSupported";
 
     }
 
 
     /*
-     * عرض معلومات النظام
+     * Show System Info
      */
 
     var fwDisplay =
@@ -1030,7 +1030,7 @@ body::after {
         ?
         "<b>" + key + "</b>"
         :
-        "<span style='color:#8f9eb0;'>غير معروف</span>";
+        "<span style='color:#8f9eb0;'>Unknown</span>";
 
 
     var bugDisplay =
@@ -1042,12 +1042,12 @@ body::after {
         +
         "</span>"
         :
-        "<span style='color:#8f9eb0;'>لا يوجد</span>";
+        "<span style='color:#8f9eb0;'>Not Found</span>";
 
 
     detEl.innerHTML =
 
-        "النظام "
+        "Version "
 
         +
         fwDisplay
@@ -1056,7 +1056,7 @@ body::after {
         " &nbsp;•&nbsp; "
 
         +
-        "الثغرة "
+        "Exploit "
 
         +
         bugDisplay
@@ -1069,13 +1069,13 @@ body::after {
 
 
     /*
-     * إذا لم تكن النسخة مدعومة
+     * If Not Supported
      */
 
     if (!bug) {
 
         setState(
-            "نسخة غير مدعومة",
+            "UnSupported Version",
             "bad"
         );
 
@@ -1085,7 +1085,7 @@ body::after {
 
 
     /*
-     * تحديد الصفحة المطلوبة
+     * Select Required Page
      */
 
     var target =
@@ -1104,7 +1104,7 @@ body::after {
     function go() {
 
         setState(
-            "جارٍ تحميل "
+            "Loading "
             +
             bug
             +
@@ -1119,7 +1119,7 @@ body::after {
 
 
     /*
-     * انتظار الضغط
+     * Wait For C0mp
      */
 
     function waitForTap(msg, action) {
@@ -1184,7 +1184,7 @@ body::after {
     else if (!navigator.onLine) {
 
         setCache(
-            "غير متصل — التشغيل من التخزين المؤقت",
+            "Offline-Using Oflline Cache",
             true
         );
 
@@ -1197,7 +1197,7 @@ body::after {
     ) {
 
         setCache(
-            "التخزين المؤقت جاهز",
+            "Cache Is Ready",
             true
         );
 
@@ -1216,13 +1216,13 @@ body::after {
 
 
         setCache(
-            "تم تحميل التحديث",
+            "Update Downloaded",
             true
         );
 
 
         waitForTap(
-            "تحديث جاهز — اضغط للتحديث والتشغيل",
+            "Update Is Ready - Press To Run",
             function () {
 
                 location.reload();
@@ -1236,7 +1236,7 @@ body::after {
 
 
         setCache(
-            "جارٍ التحقق من التخزين المؤقت..."
+            "Checking Offline Cache"
         );
 
 
@@ -1245,7 +1245,7 @@ body::after {
             function () {
 
                 setCache(
-                    "التخزين المؤقت للمرة الأولى..."
+                    "Offline Cache For The First Time...."
                 );
 
             },
@@ -1263,7 +1263,7 @@ body::after {
                 ) {
 
                     setCache(
-                        "تخزين "
+                        "Cache "
                         +
                         Math.round(
                             (e.loaded / e.total) * 100
@@ -1284,13 +1284,13 @@ body::after {
             function () {
 
                 setCache(
-                    "تم التخزين المؤقت — جاهز للاستخدام دون اتصال",
+                    "Offline Cache Is Done - Ready To Use Without Internet Connection",
                     true
                 );
 
 
                 waitForTap(
-                    "جاهز — اضغط للتشغيل",
+                    "Ready - Press To Start",
                     go
                 );
 
@@ -1310,13 +1310,13 @@ body::after {
 
 
                 setCache(
-                    "التحديث جاهز",
+                    "Update Is Ready",
                     true
                 );
 
 
                 waitForTap(
-                    "تحديث جاهز — اضغط لإعادة التحميل",
+                    "Update Is Ready - Press To Restart",
                     function () {
 
                         location.reload();
@@ -1334,7 +1334,7 @@ body::after {
             function () {
 
                 setCache(
-                    "التخزين المؤقت جاهز",
+                    "Offline Cache Is Ready",
                     true
                 );
 
@@ -1351,12 +1351,12 @@ body::after {
             function () {
 
                 setCache(
-                    "فشل التخزين المؤقت"
+                    "Offline Cache Failed"
                 );
 
 
                 waitForTap(
-                    "فشل التخزين — اضغط للتشغيل رغم ذلك",
+                    "Offline Cache Failed - Press To Restart",
                     go
                 );
 
@@ -1370,12 +1370,12 @@ body::after {
             function () {
 
                 setCache(
-                    "التخزين المؤقت قديم"
+                    "Offline Cache Is Old"
                 );
 
 
                 waitForTap(
-                    "التخزين قديم — اضغط للتشغيل",
+                    "Offline Cache Is Old - Press To Run",
                     go
                 );
 

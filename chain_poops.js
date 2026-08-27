@@ -168,7 +168,7 @@ let allDone = false;
               + (payload[0] === 0xe9 ? "e9-jmp-rel32" : "NOT-e9")
             : "MISSING");
 
-        state("Please wait... أنتظر رجاءاً ", "warn");
+        state("Please wait...", "warn");
         await new Promise(r => setTimeout(r, 0));
 
         const PRIMITIVE_LOUD = /FAIL|ERROR|THREW|RETRY|ABORT|PASS/i;
@@ -1387,7 +1387,7 @@ let allDone = false;
 
         let kv = null;
         if (kernelBase && triplets && kqFdp) {
-            state("Editing in progressجارِ التعديل ", "warn");
+            state("Editing in progress ", "warn");
             mark("SHORT-READS", "n=" + shortReads + " gate=" + (R2_ON ? 1 : 0));
 
             const KREAD_TRIES = params.has("kreadtries")
@@ -1805,7 +1805,7 @@ let allDone = false;
                         if (burned.size) rebootRequired = true;
                     }
 
-                    state("المرحلة الأخيرة Final stage", "warn");
+                    state("Final stage", "warn");
                     const uafFp = fget(uafSock);
                     mark("UAF-FP", "fd=" + uafSock + " fp=" + uafFp);
                     if (kptr2(uafFp)) {
@@ -2308,11 +2308,11 @@ let allDone = false;
                 + " reached=" + (triplets ? "triplets" : committed ? "commit" : "none"));
         }
 
-        state(allDone ? "تم تهكير الجهاز بنجاح "
+        state(allDone ? "Jailbreak Completed "
               : kv ? "KERNEL R/W -- REBOOT NEEDED"
               : kernelBase ? "FAILED IN make_karw -- REBOOT"
               : triplets ? "FAILED IN leak_kqueue (triple free was OK) -- REBOOT"
-              : committed ? "FAILED PLEASE REBOOT PS4 فشل في تهكير الجهاز يرجى إعادة تشغيل الجهاز "
+              : committed ? "FAILED PLEASE REBOOT PS4  "
               : "no commit", allDone ? "ok" : kv ? "warn" : "bad");
     } catch (e) {
         mark("STEP10-FAILED", (e && e.message) ? e.message : String(e));
