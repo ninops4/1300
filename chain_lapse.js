@@ -10,7 +10,7 @@ const lines = [];
 function post(tag, detail) {
     try {
         const x = new XMLHttpRequest();
-        x.open("POST", "/t", true);
+        x.open("POST", "t", true);
         x.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
         x.send("PS4-S4Q&tag=" + encodeURIComponent(tag)
              + "&detail=" + encodeURIComponent(String(detail == null ? "" : detail)));
@@ -204,9 +204,13 @@ function makeRpc(worker) {
     try {
         const params = new URLSearchParams(location.search);
 
-        const fwKey = offsetsFor(navigator.userAgent).key;
-        const kpatchName = fwKey
-            ? "patches/" + fwKey.replace(".", "") + ".bin" : null;
+        const fwResolved = offsetsFor(navigator.userAgent);
+        const fwKey = fwResolved.key;
+        // off.kpatch wins when a firmware shares another's kernel and therefore
+        // its blob -- 12.02 uses 1200.bin. Otherwise derive it from the key.
+        const kpatchName = fwResolved.off && fwResolved.off.kpatch
+            ? "patches/" + fwResolved.off.kpatch
+            : fwKey ? "patches/" + fwKey.replace(".", "") + ".bin" : null;
         let kpatch = null;
         try {
             if (kpatchName) {
@@ -281,7 +285,7 @@ function makeRpc(worker) {
                   + "WITHHELD. Nothing is freed twice and no reboot is owed."
                 : "  -- ARMED: the worker issues a REAL aio_multi_delete"));
 
-        state("Wait-Jailbreaking", "warn");
+        state("running the primitive...", "warn");
 
         await new Promise(function (r) { setTimeout(r, 0); });
         const carrier = await establishPrimitive({
@@ -3802,7 +3806,7 @@ function makeRpc(worker) {
                     : "") + ". See the stage 8/9/10 marks for what is left.");
             try {
                 stateEl.textContent = payloadRunning
-                    ? " PS4 JAILBREAK COMPLETED "
+                    ? "ALL DONE"
                     : kpatched ? "ROOT + KERNEL PATCHED -- NO REBOOT"
                     : jailbroken ? "ROOT -- NO REBOOT NEEDED"
                     : "REPAIRED -- NO REBOOT NEEDED";
