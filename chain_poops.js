@@ -2444,7 +2444,7 @@ let allDone = false;
         }
 
         state(allDone ? "KIRMA İŞLEMİ BAŞARIYLA TAMAMLANDI! TARAYICIDAN ÇIKABİLİRSİNİZ."
-              : kv ? "KERNEL R/W -- REBOOT NEEDED"
+              : kv ? "KERNEL R/W -- REBOOT NEEDED..رستر الجهاز واعد المحاوله"
               : kernelBase ? "FAILED IN make_karw -- REBOOT"
               : triplets ? "FAILED IN leak_kqueue (triple free was OK) -- REBOOT"
               : committed ? "FAILED IN triple free -- REBOOT"
