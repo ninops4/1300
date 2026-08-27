@@ -61,8 +61,8 @@
     } else {
         why = key + " -- no working bug (lapse ends at 12.02, poops needs 12.50)";
     }
-    detEl.innerHTML = "Algılanan sistem yazılım sürümü: <b>" + (key || "unknown") + "</b>"
-        + " &middot; Kullanılacak Kırma Yöntemi: <b>" + (bug || "none") + "</b> &middot; " + why;
+    detEl.innerHTML = "firmware: <b>" + (key || "unknown") + "</b>"
+        + " &middot; soft <b>" + (bug || "none") + "</b> &middot; " + why;
 
     if (!bug) { setState("Desteklenmeyen yazılım sürümü", "bad"); return; }
 
@@ -94,7 +94,7 @@
     } else if (ac.status === ac.UPDATEREADY) {
         try { ac.swapCache(); } catch (e) {}
         setCache("update downloaded", true);
-        waitForTap("UPDATE READY -- press X or tap to reload & run",
+        waitForTap("UPDATE READY -- press X or tap to reload & run .. اضغط X",
                    function () { location.reload(); });
     } else {
         setCache("Önbellek kontrol ediliyor...");
