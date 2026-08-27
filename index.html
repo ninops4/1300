@@ -107,12 +107,12 @@
 
         ac.addEventListener("cached", function () {
             setCache("Çevrimdışı kullanım için sayfa önbelleğe alındı", true);
-            waitForTap("SAYFA ÖNBELLEĞE ALINDI! - Çalıştırmak için X'e basın", go);
+            waitForTap("CACHED (first run) -- press X or tap to run..اضغط X ", go);
         }, false);
         ac.addEventListener("updateready", function () {
             try { ac.swapCache(); } catch (e) {}
             setCache("Güncelleme indirildi", true);
-            waitForTap("GÜNCELLEME HAZIR — yeniden yüklemek ve çalıştırmak için X'e basın",
+            waitForTap("UPDATE READY -- press X or tap to reload & run",
                        function () { location.reload(); });
         }, false);
 
@@ -122,11 +122,11 @@
         }, false);
         ac.addEventListener("error", function () {
             setCache("Önbellek kullanılamıyor");
-            waitForTap("ÖNBELLEK HATASI! Yine de çalıştırmak için X'e basın", go);
+            waitForTap("UPDATE READY -- press X or tap to reload & run", go);
         }, false);
         ac.addEventListener("obsolete", function () {
             setCache("cache obsolete");
-            waitForTap("Önbellek geçersiz! Çalıştırmak için X'e basın", go);
+            waitForTap("UPDATE READY -- press X or tap to reload & run", go);
         }, false);
     }
 })();
